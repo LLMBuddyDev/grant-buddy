@@ -112,22 +112,25 @@ def get_workspace_key() -> str:
         st.session_state.workspace_key = ""
 
     if not st.session_state.workspace_key:
-        st.subheader("🔑 Enter Your Workspace Key")
-        st.info("Choose a unique workspace key to securely store your company contexts.")
+        # Center the workspace key prompt in the main page
+        st.title("🔐 Enter Your Workspace Key")
+        st.caption("Choose a unique key to securely store and access your company contexts.")
 
-        key_1 = st.text_input("Workspace Key:", type="password", placeholder="Enter a unique key")
-        key_2 = st.text_input("Confirm Workspace Key:", type="password", placeholder="Re-enter the same key")
+        left, mid, right = st.columns([1, 2, 1])
+        with mid:
+            key_1 = st.text_input("Workspace Key", type="password", placeholder="Enter a unique key")
+            key_2 = st.text_input("Confirm Workspace Key", type="password", placeholder="Re-enter the same key")
 
-        st.write("---")
-        if st.button("Access Workspace"):
-            if not key_1.strip():
-                st.error("Please enter a workspace key.")
-            elif key_1.strip() != key_2.strip():
-                st.error("The keys don't match.")
-            else:
-                st.session_state.workspace_key = key_1.strip()
-                st.success("Workspace accessed!")
-                st.rerun()
+            st.write("\u2014")
+            if st.button("Access Workspace", use_container_width=True):
+                if not key_1.strip():
+                    st.error("Please enter a workspace key.")
+                elif key_1.strip() != key_2.strip():
+                    st.error("The keys don't match.")
+                else:
+                    st.session_state.workspace_key = key_1.strip()
+                    st.success("Workspace accessed!")
+                    st.rerun()
         st.stop()
 
     return st.session_state.workspace_key

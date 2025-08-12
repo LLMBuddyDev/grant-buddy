@@ -790,11 +790,7 @@ h1, h2, h3, h4, h5, h6, p, div, span, label, button, input, textarea, select {
 
 st.title("🤖 GrantBuddy – Federal Funding Analyzer")
 
-# Show a helpful message on the main page until a workspace key is entered
-if not st.session_state.get("workspace_key"):
-    st.info(
-        "To get started, open the sidebar (click the ← arrow at top-left) and enter your Workspace Key."
-    )
+# The workspace key prompt will render centered from get_workspace_key() when missing
 
 # ------------------------------------------------------------
 # 🔐 Workspace Key + Context Management (Sidebar)
