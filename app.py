@@ -790,14 +790,14 @@ h1, h2, h3, h4, h5, h6, p, div, span, label, button, input, textarea, select {
 
 st.title("🤖 GrantBuddy – Federal Funding Analyzer")
 
-# The workspace key prompt will render centered from get_workspace_key() when missing
+# Ensure workspace key from main area before rendering side UI
+workspace_key = get_workspace_key()
 
 # ------------------------------------------------------------
 # 🔐 Workspace Key + Context Management (Sidebar)
 # ------------------------------------------------------------
 with st.sidebar:
     st.header("🔐 Workspace & Context")
-    workspace_key = get_workspace_key()
     cm = ContextManager()
     selected_context_name = render_context_selector(cm)
     current_context = None
